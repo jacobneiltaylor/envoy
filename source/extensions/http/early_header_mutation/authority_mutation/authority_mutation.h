@@ -10,16 +10,16 @@ namespace Envoy {
 namespace Extensions {
 namespace Http {
 namespace EarlyHeaderMutation {
-namespace HeaderMutation {
+namespace AuthorityMutation {
 
 using HeaderAppendAction = envoy::config::core::v3::HeaderValueOption::HeaderAppendAction;
 using HeaderValueOption = envoy::config::core::v3::HeaderValueOption;
 using ProtoHeaderMutation =
     envoy::extensions::http::early_header_mutation::header_mutation::v3::HeaderMutation;
 
-class HeaderMutation : public Envoy::Http::EarlyHeaderMutation {
+class AuthorityMutation : public Envoy::Http::EarlyHeaderMutation {
 public:
-  HeaderMutation(const ProtoHeaderMutation& mutations,
+  HeaderMutation(const ProtoAuthorityMutation& mutations,
                  Server::Configuration::ServerFactoryContext& context);
 
   bool mutate(Envoy::Http::RequestHeaderMap& headers,

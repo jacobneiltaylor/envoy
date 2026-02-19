@@ -8,17 +8,16 @@ namespace Envoy {
 namespace Extensions {
 namespace Http {
 namespace EarlyHeaderMutation {
-namespace HeaderMutation {
+namespace AuthorityMutation {
 
-HeaderMutation::HeaderMutation(const ProtoHeaderMutation& mutations,
-                               Server::Configuration::ServerFactoryContext& context)
+AuthorityMutation::AuthorityMutation(const ProtoAuthorityMutation& mutation)
     : mutations_(THROW_OR_RETURN_VALUE(
           Envoy::Http::HeaderMutations::create(mutations.mutations(), context),
           std::unique_ptr<Envoy::Http::HeaderMutations>)) {}
 
 bool HeaderMutation::mutate(Envoy::Http::RequestHeaderMap& headers,
                             const StreamInfo::StreamInfo& stream_info) const {
-  mutations_->evaluateHeaders(headers, {&headers}, stream_info);
+  std::string host
   return true;
 }
 
